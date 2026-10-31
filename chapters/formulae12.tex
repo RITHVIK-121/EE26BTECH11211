@@ -1,0 +1,229 @@
+
+
+\begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
+
+\item
+\begin{align}
+\mydet{a & b & c\\d & e & f\\g & h & i} = a\brak{ei - fh} - b\brak{di - fg} + c\brak{dh - eg}
+\label{eq:EE26BTECH11211-Prob_1}
+\end{align}
+
+\item 
+King's Rule
+
+\begin{align}
+\int_a^b f\brak{x}\,dx
+&= \int_a^b f\brak{a+b-x}\,dx
+\label{eq:EE26BTECH11211-Prob_2.1}
+\end{align}
+
+For the interval $[0,a]$,
+
+\begin{align}
+\int_0^a f\brak{x}\,dx
+&= \int_0^a f\brak{a-x}\,dx
+\label{eq:EE26BTECH11211-Prob_2.2}
+\end{align}
+
+Hence,
+
+\begin{align}
+2\int_0^a f\brak{x}\,dx
+&= \int_0^a \sbrak{f\brak{x}+f\brak{a-x}}\,dx
+\label{eq:EE26BTECH11211-Prob_2.3}
+\end{align}
+
+\item 
+Integration by Parts
+
+\begin{align}
+\int u\,dv &= uv-\int v\,du
+\label{eq:EE26BTECH11211-Prob_3.1}
+\end{align}
+
+For definite integrals,
+
+\begin{align}
+\int_a^b u\,dv
+&= \sbrak{uv}_a^b-\int_a^b v\,du
+\label{eq:EE26BTECH11211-Prob_3.2}
+\end{align}
+
+\item 
+Integration by Substitution
+
+\begin{align}
+u &= g\brak{x}, \qquad du=g'\brak{x}\,dx
+\end{align}
+
+\begin{align}
+\int f\brak{g\brak{x}}g'\brak{x}\,dx
+&= \int f\brak{u}\,du
+\label{eq:EE26BTECH11211-Prob_4.1}
+\end{align}
+
+For definite integrals,
+
+\begin{align}
+\int_a^b f\brak{g\brak{x}}g'\brak{x}\,dx
+&= \int_{g\brak{a}}^{g\brak{b}} f\brak{u}\,du
+\label{eq:EE26BTECH11211-Prob_4.2}
+\end{align}
+
+\begin{align}
+\int \frac{f'\brak{x}}{f\brak{x}}\,dx
+&= \ln\abs{f\brak{x}}+C
+\label{eq:EE26BTECH11211-Prob_4.3}
+\end{align}
+
+\item 
+Partial Fractions
+
+For distinct constants $a$ and $b$,
+
+\begin{align}
+\frac{1}{\brak{x-a}\brak{x-b}}
+&= \frac{1}{a-b}
+\left[
+\frac{1}{x-a}-\frac{1}{x-b}
+\right]
+\end{align}
+
+\begin{align}
+\int\frac{dx}{\brak{x-a}\brak{x-b}}
+&= \frac{1}{a-b}
+\ln\abs{\frac{x-a}{x-b}}+C
+\end{align}
+
+\begin{align}
+\frac{1}{\brak{x-a}\brak{x-b}}
+&= \frac{A}{x-a}+\frac{B}{x-b}
+\label{eq:EE26BTECH11211-Prob_5.1}
+\end{align}
+
+where
+
+\begin{align}
+A &= \frac{1}{a-b},
+& B &= -\frac{1}{a-b}
+\end{align}
+
+\item
+Finding Area
+
+Area under the curve $y=f\brak{x}$, where $f\brak{x}\geq 0$,
+
+\begin{align}
+A &= \int_a^b f\brak{x}\,dx\label{eq:EE26BTECH11211-Prob_6.1}
+\end{align}
+
+Area between a curve and the $x$-axis,
+
+\begin{align}
+A &= \int_a^b \abs{f\brak{x}}\,dx
+\end{align}
+
+If the curve crosses the $x$-axis, split the integral at its points of intersection.
+
+Area between two curves, where $f\brak{x}\geq g\brak{x}$,
+
+\begin{align}
+A &= \int_a^b \sbrak{f\brak{x}-g\brak{x}}\,dx
+\end{align}
+
+In general,
+
+\begin{align}
+A &= \int_a^b \abs{f\brak{x}-g\brak{x}}\,dx
+\end{align}
+
+Area with respect to $y$, for the curve $x=f\brak{y}$ and the $y$-axis,
+
+\begin{align}
+A &= \int_c^d \abs{f\brak{y}}\,dy
+\end{align}
+
+Area between two curves with respect to $y$,
+
+\begin{align}
+A &= \int_c^d
+\sbrak{x_{\text{right}}\brak{y}-x_{\text{left}}\brak{y}}\,dy
+\end{align}
+
+\item 
+Let $\vec{a}$ and $\vec{b}$ are two vectors then 
+\begin{align}
+\vec{a}.\vec{b} = |a||b|cos\theta
+\label{eq:EE26BTECH11211-Prob_7.1}
+\end{align}
+where $\theta$ is the angle between two vectors.
+
+\item
+\begin{align}
+\dfrac{d}{dx}x^n = nx^{n-1}
+\end{align}
+
+\item
+The conditional probability of event $S$ given event $E$
+is defined as
+\begin{align}
+P\brak{S\mid E}=\frac{P\brak{S\cap E}}{P\brak{E}}.
+\label{eq:EE26BTECH11211-Prob_9.1}
+\end{align}
+
+\item
+\begin{align}
+\frac{d}{dx}\left(\tan^{-1}u\right)
+= \frac{1}{1+u^2}\frac{du}{dx}.
+\label{eq:EE26BTECH11211_Prob_10.1}
+\end{align}
+
+\item
+Let $\vec{A} = x_1\vec{i} + y_1\vec{j} + z_1\vec{k}$ and $\vec{B}= x_2\vec{i} + y_2\vec{j} + z_2\vec{k}$ be two vectors then the vector perpendicular to both the vectors is 
+\begin{align}
+\vec{A}\times\vec{B}
+=
+\mydet{
+\vec{i} & \vec{j} & \vec{k}\\
+x_1 & y_1 & z_1\\
+x_2 & y_2 & z_2
+}\label{eq:EE26BTECH11211_Prob_11.1}
+\end{align}
+
+\item
+Let $\vec{A}$ be a vector then the unit vector in the direction of vector $\vec{A}$
+is $\dfrac{\vec{A}}{\abs{A}}$\label{eq:EE26BTECH11211_Prob_12.1}
+
+\item
+$\dfrac{de^{ax}}{dx} = e^{ax}a$ \label{eq:EE26BTECH11211_Prob_13}
+
+\item 
+Linear first-order differential equation \label{eq:EE26BTECH11211_Prob_14}
+
+For
+\begin{align}
+    \frac{dy}{dx}+P(x)y=Q(x)
+\end{align}
+
+The integrating factor is
+\begin{align}
+    \mathrm{I.F.}=e^{\int P(x)\,dx}
+\end{align}
+
+The solution is
+\begin{align}
+    y\,e^{\int P(x)\,dx}
+    =\int Q(x)e^{\int P(x)\,dx}\,dx+C
+\end{align}
+
+\item
+$\dfrac{d}{dx}sin^{-1}x = \dfrac{1}{\sqrt1-x^2}$\label{eq:EE26BTECH11211_Prob_15}
+
+\item
+ Bayes' theorem ,
+\begin{align}
+P\brak{E\mid A}
+=\frac{P\brak{E}P\brak{A\mid E}}{P\brak{A}}\label{eq:EE26BTECH11211-Prob_16}.
+\end{align}
+\end{enumerate}
+
