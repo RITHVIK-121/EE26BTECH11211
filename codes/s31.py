@@ -1,12 +1,9 @@
-    
-    
-
-
-    
-  
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+
+from CoordGeo.line.funcs import line_gen_num
+
 # Question 31: Hollow right circular cylinder
 
 # Given values
@@ -72,6 +69,45 @@ print(f"Outer radius = {outer_radius:.1f} cm")
 print(f"Inner radius = {inner_radius:.1f} cm")
 print("=" * 55)
 
+
+# Generate a 3D line using CoordGeo
+def draw_line_3d(ax, P, Q, **kwargs):
+    P_vec = np.array(P, dtype=float).reshape(3, 1)
+    Q_vec = np.array(Q, dtype=float).reshape(3, 1)
+
+    line = line_gen_num(P_vec, Q_vec, 2)
+
+    ax.plot(
+        line[0, :],
+        line[1, :],
+        line[2, :],
+        **kwargs
+    )
+
+
+# Generate a circular path using CoordGeo
+def draw_circle_3d(ax, radius, z_level, color, width):
+    points = [
+        (
+            radius * np.cos(angle),
+            radius * np.sin(angle),
+            z_level
+        )
+        for angle in theta
+    ]
+
+    points.append(points[0])
+
+    for i in range(len(points) - 1):
+        draw_line_3d(
+            ax,
+            points[i],
+            points[i + 1],
+            color=color,
+            linewidth=width
+        )
+
+
 # --------------------------------------------------
 # Draw a 3D hollow cylinder
 # --------------------------------------------------
@@ -129,25 +165,26 @@ for radius, color, width in [
     (outer_radius, "blue", 2.5),
     (inner_radius, "darkred", 2.5)
 ]:
-    circle_x = radius * np.cos(theta)
-    circle_y = radius * np.sin(theta)
-
-    ax.plot(circle_x, circle_y, np.zeros_like(theta),
-            color=color, linewidth=width)
-    ax.plot(circle_x, circle_y, np.full_like(theta, height),
-            color=color, linewidth=width)
+    draw_circle_3d(ax, radius, 0, color, width)
+    draw_circle_3d(ax, radius, height, color, width)
 
 # Draw radius indicators in different directions
 # Outer radius along positive X direction
-ax.plot(
-    [0, outer_radius], [0, 0], [height, height],
-    color="blue", linewidth=3
+draw_line_3d(
+    ax,
+    (0, 0, height),
+    (outer_radius, 0, height),
+    color="blue",
+    linewidth=3
 )
 
 # Inner radius along positive Y direction
-ax.plot(
-    [0, 0], [0, inner_radius], [height, height],
-    color="darkred", linewidth=3
+draw_line_3d(
+    ax,
+    (0, 0, height),
+    (0, inner_radius, height),
+    color="darkred",
+    linewidth=3
 )
 
 # Radius labels placed away from one another
@@ -168,10 +205,10 @@ ax.text(
 )
 
 # Dimension line for height
-ax.plot(
-    [outer_radius + 0.7, outer_radius + 0.7],
-    [0, 0],
-    [0, height],
+draw_line_3d(
+    ax,
+    (outer_radius + 0.7, 0, 0),
+    (outer_radius + 0.7, 0, height),
     color="black",
     linestyle="--",
     linewidth=2
@@ -207,7 +244,6 @@ plt.tight_layout()
 plt.savefig("s31.png", dpi=300, bbox_inches="tight")
 print("\n3D diagram saved as s31.png")
 #os.system("termux-open s31.png")
+
 # Display image
 plt.show()
-
-

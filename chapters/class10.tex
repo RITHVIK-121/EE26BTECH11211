@@ -139,12 +139,16 @@ AD is a median of $\triangle ABC$ with vertices A\brak{5,-6},B\brak{6,4} and C\b
 \\Coordinates of D:
 \begin{align}D = \brak{\frac{6 + 0}{2},\frac{4 + 0}{2}} = \brak{3,2}
 \end{align}
-Find the length of AD using the distance formula:
-\begin{center}
-AD = $\sqrt{\brak{3 - 5}^2 + \brak{2 - \brak{-6}}^2}$
-\begin{align}AD = \sqrt{\brak{-2}^2 + \brak{8}^2} = \sqrt{68}
+\begin{align}
+\vec{A} = \myvec{5\\-6} \text{and} \vec{D} = \myvec{3\\2} 
 \end{align}
-\end{center}
+The lenght AD is 
+\begin{align}
+\vec{AD} = \vec{D} - \vec{A} = \myvec{-2 \\8 }
+\end{align}
+\begin{align}
+\norm{AD} = \sqrt{\brak{-2}^2 + \brak{8}^2} = \sqrt{68}
+\end{align}
 \begin{align}
 AD = \sqrt{68}
 \end{align}
@@ -244,7 +248,7 @@ $f_1, f_2, \ldots, f_n$, the value of $\sum_{i=1}^{n} f_i \brak{x_i - \bar{x}}$ 
  Substitute $ \sum_{i=1}^{n} f_ix_i = \bar{x} \sum_{i=1}^{n}f_i$ into the equation:
   \begin{align}\sum_{i=1}^{n} f_i \brak{x_i - \bar{x}} = \sum_{i=1}^{n} f_ix_i - \bar{x} \sum_{i=1}^{n} f_i = 0
   \end{align}
-  Thus the sum of the deviations of a set of values from their mean is always zero.
+  Thus the sum of the deviations of a set of values from their mean is always zero.\\
 
 \item
  The zeroes of a polynomial $x^2 + px + q$ are twice the zeroes of the polynomial $4x^2 - 5x - 6$. The value of p is :
@@ -289,12 +293,12 @@ If the distance between the points \brak{3,-5} and \brak{x,-5} is 15 units , the
 \solution
 \\ Given two points are A\brak{3,-5} and B\brak{x,-5}.
 \\ Given the distance between two points is 15 units.
+\begin{align}
+\vec{AB} = \vec{B} - \vec{A} = \myvec{x - 3\\ -5 - \brak{-5}}
+\end{align}
 \\From \eqref{eq:EE26BTECH11211-Prob_3.10}
 \begin{align}
-AB = \sqrt{\brak{x_2 - x_1}^2 + \brak{y_2 - y_1}^2}
-\end{align}
-\begin{align}
-15 = \sqrt{\brak{x - 3}^2 + \brak{-5 -\brak{-5}}^2}
+\norm{AB} = \sqrt{\brak{x - 3}^2 + \brak{-5 -\brak{-5}}^2}&=15
 \end{align}
 
 \begin{align}

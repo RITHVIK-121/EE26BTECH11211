@@ -1,15 +1,23 @@
-
+import numpy as np
 import matplotlib.pyplot as plt
 import os
+
+from CoordGeo.line.funcs import line_gen_num
+
 # Coordinates of the points
 A = (1, 2)
 B = (2, 3)
 P = (8/5, 13/5)
 
-# Plot the line segment AB
+# Plot the line segment AB using CoordGeo
+A_vec = np.array([[A[0]], [A[1]]])
+B_vec = np.array([[B[0]], [B[1]]])
+
+AB = line_gen_num(A_vec, B_vec, 100)
+
 plt.plot(
-    [A[0], B[0]],
-    [A[1], B[1]],
+    AB[0, :],
+    AB[1, :],
     'b-',
     label='Line segment AB'
 )
@@ -54,8 +62,6 @@ plt.gca().set_aspect('equal', adjustable='box')
 # Save the image before displaying it
 plt.savefig('s24.png', dpi=300, bbox_inches='tight')
 #os.system("termux-open s24.png")
+
 # Display the graph
 plt.show()
-
-
-

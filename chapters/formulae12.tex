@@ -183,10 +183,10 @@ Let $\vec{A} = x_1\vec{i} + y_1\vec{j} + z_1\vec{k}$ and $\vec{B}= x_2\vec{i} + 
 \begin{align}
 \vec{A}\times\vec{B}
 =
-\mydet{
-\vec{i} & \vec{j} & \vec{k}\\
-x_1 & y_1 & z_1\\
-x_2 & y_2 & z_2
+\myvec{
+a_2b_3 - a_3b_2\\
+a_3b_1 - a_1b_3\\
+a_1b_2 - a_2b_1
 }\label{eq:EE26BTECH11211_Prob_11.1}
 \end{align}
 
@@ -224,6 +224,46 @@ $\dfrac{d}{dx}sin^{-1}x = \dfrac{1}{\sqrt1-x^2}$\label{eq:EE26BTECH11211_Prob_15
 \begin{align}
 P\brak{E\mid A}
 =\frac{P\brak{E}P\brak{A\mid E}}{P\brak{A}}\label{eq:EE26BTECH11211-Prob_16}.
+\end{align}
+
+\item
+The following Laplace transform formulae are used in the solutions.
+
+\begin{align}
+\mathcal{L}\{f(t)\}
+&=F(s)=\int_0^\infty e^{-st}f(t)\,dt,
+\label{eq:EE26BTECH11211_Prob_1.1.17.1}
+\\
+\mathcal{L}\left\{\frac{df}{dt}\right\}
+&=sF(s)-f(0),
+\label{eq:EE26BTECH11211_Prob_1.1.17.2}
+\\
+\mathcal{L}\{t f(t)\}
+&=-\frac{dF(s)}{ds},
+\label{eq:EE26BTECH11211_Prob_1.1.17.3}
+\\
+\mathcal{L}\{1\}
+&=\frac{1}{s},
+\label{eq:laplace-one}
+\\
+\mathcal{L}\{t^n\}
+&=\frac{n!}{s^{n+1}},\qquad n>-1,
+\label{eq:EE26BTECH11211_Prob_1.1.17.5}
+\\
+E_1(s)&=\int_s^\infty \frac{e^{-u}}{u}\,du,
+\label{eq:exponential-integral}
+\\
+\mathcal{L}\left\{\frac{1}{1+t}\right\}
+&=e^sE_1(s),
+\label{eq:EE26BTECH11211_Prob_1.1.17.7}
+\\
+\mathcal{L}\{\ln(1+t)\}
+&=\frac{e^sE_1(s)}{s},
+\label{eq:EE26BTECH11211_Prob_1.1.17.8}
+\\
+\mathcal{L}^{-1}\left\{\frac{1}{s^{n+1}}\right\}
+&=\frac{t^n}{n!}.
+\label{eq:EE26BTECH11211_Prob_1.1.17.9}
 \end{align}
 \end{enumerate}
 

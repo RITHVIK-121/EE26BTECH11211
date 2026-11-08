@@ -734,23 +734,15 @@ can be obtained using their cross product\eqref{eq:EE26BTECH11211_Prob_11.1}.
 \begin{align}
 \vec{A}\times\vec{B}
 =
-\mydet{
-\vec{i} & \vec{j} & \vec{k}\\
-1 & 0 & 1\\
-1 & 0 & -1
-}
-\end{align}
-Expanding the determinant using\eqref{eq:EE26BTECH11211_Prob_1},
-\begin{align}
-\vec{A}\times\vec{B}
-&=\vec{i}\brak{0-0}
--\vec{j}\brak{-1-1}
-+\vec{k}\brak{0-0}\\
-&=2\vec{j}.
+\myvec{
+0 - 0\\
+1 - \brak{-1}\\
+0 - 0
+}&=\myvec{0\\2\\0}
 \end{align}
 {Step 2: Calculate the magnitude}
 \begin{align}
-|\vec{A}\times\vec{B}|=|2\vec{j}|=2.
+|\vec{A}\times\vec{B}|=2.
 \end{align}
 {Step 3: Finding the unit vector}
 \\The unit vector is obtained by dividing the vector
@@ -1065,7 +1057,7 @@ Choose the correct option:
 
 The dot product of two vectors is commutative.
 
-Using the formula \eqref{eq:EE26BTECH11211_Prob_1}
+Using the formula \eqref{eq:EE26BTECH11211-Prob_1}
 \begin{align}
 \vec{a}\cdot\vec{b}
 =|\vec{a}||\vec{b}|\cos\theta,
@@ -1817,125 +1809,162 @@ I=\frac{1}{5}\log\left|
 
 \item
 Find the particular solution of the differential equation
-$2xy+y^2-2x^2\frac{dy}{dx}=0,$given that $y=2$ when $x=1$.
+\begin{align}
+2xy+y^2-2x^2\frac{dy}{dx}&=0,
+\label{eq:EE26BTECH11211_Prob_1.2.32.0}
+\end{align}
+given that $y=2$ when $x=1$.
 
 \solution
-Rearranging the given equation,
+
+Rearranging \eqref{eq:EE26BTECH11211_Prob_1.2.32.0},
 \begin{align}
-2x^2\frac{dy}{dx}=2xy+y^2.
+\frac{dy}{dx}&=\frac{y}{x}+\frac{y^2}{2x^2}.
+\label{eq:EE26BTECH11211_Prob_1.2.32.01}
+\end{align}
+
+Put
+\begin{align}
+z&=\frac{1}{y}.
+\end{align}
+Differentiating,
+\begin{align}
+\frac{dz}{dx}&=-\frac{1}{y^2}\frac{dy}{dx}.
+\end{align}
+Substituting from \eqref{eq:EE26BTECH11211_Prob_1.2.32.01},
+\begin{align}
+\frac{dz}{dx}
+&=-\frac{z}{x}-\frac{1}{2x^2}.
 \end{align}
 Therefore,
 \begin{align}
-\frac{dy}{dx}=\frac{y}{x}+\frac{y^2}{2x^2}.
+\frac{dz}{dx}+\frac{z}{x}&=-\frac{1}{2x^2}.
 \end{align}
-This is a homogeneous differential equation. Let
+Multiplying throughout by $x$,
 \begin{align}
-y=vx,
+x\frac{dz}{dx}+z&=-\frac{1}{2x}\\
+\frac{d}{dx}\brak{xz}&=-\frac{1}{2x}.
 \end{align}
-where $v$ is a function of $x$.
-\\Differentiating with respect to $x$,
+
+Let
 \begin{align}
-\frac{dy}{dx}=v+x\frac{dv}{dx}.
+t&=x-1,\qquad w(t)=xz=\frac{x}{y}.
+\label{eq:EE26BTECH11211_Prob_1.2.32.1}
 \end{align}
-Substituting these expressions into the differential equation,
+Then $x=t+1$, and
 \begin{align}
-v+x\frac{dv}{dx}=v+\frac{v^2}{2}.
+\frac{dw}{dt}&=-\frac{1}{2(t+1)}.
+\label{eq:EE26BTECH11211_Prob_1.2.32.2}
 \end{align}
-Simplifying,
+
+The initial condition gives
 \begin{align}
-x\frac{dv}{dx}=\frac{v^2}{2}.
+w(0)=\frac{1}{2}.
+\label{eq:EE26BTECH11211_Prob_1.2.32.3}
 \end{align}
-Separating the variables,
+
+Taking the Laplace transform of \eqref{eq:EE26BTECH11211_Prob_1.2.32.2}, and writing
+$W(s)=\mathcal{L}\{w(t)\}$, use the derivative property
+\eqref{eq:EE26BTECH11211_Prob_1.1.17.2} and the transform in
+\eqref{eq:EE26BTECH11211_Prob_1.1.17.7}:
 \begin{align}
-\frac{dv}{v^2}=\frac{dx}{2x}.
+sW(s)-w(0)&=-\frac{1}{2}e^sE_1(s).
 \end{align}
-Integrating both sides,
+Using \eqref{eq:EE26BTECH11211_Prob_1.2.32.3},
 \begin{align}
-\int v^{-2}\,dv=\frac{1}{2}\int\frac{dx}{x}.
+sW(s)-\frac{1}{2}&=-\frac{1}{2}e^sE_1(s).
 \end{align}
 Hence,
 \begin{align}
--\frac{1}{v}=\frac{1}{2}\log|x|+C.
+W(s)&=\frac{1}{2s}-\frac{e^sE_1(s)}{2s}.
 \end{align}
-Since $v=\dfrac{y}{x}$,
+
+Using the transform pair in \eqref{eq:EE26BTECH11211_Prob_1.1.17.8},
 \begin{align}
--\frac{x}{y}=\frac{1}{2}\log|x|+C.
+w(t)&=\frac{1}{2}-\frac{1}{2}\ln(1+t).
 \end{align}
-{Applying the given condition:}
-\\When $x=1$, $y=2$. Substituting these values,
+From \eqref{eq:EE26BTECH11211_Prob_1.2.32.1}, $t=x-1$ and $w=x/y$. Therefore,
 \begin{align}
--\frac{1}{2}=\frac{1}{2}\log 1+C.
-\end{align}
-Since $\log 1=0$,
-\begin{align}
-C=-\frac{1}{2}.
-\end{align}
-Therefore,
-\begin{align}
--\frac{x}{y}=\frac{1}{2}\log|x|-\frac{1}{2}.
-\end{align}
-Multiplying both sides by $-2$,
-\begin{align}
-\frac{2x}{y}=1-\log|x|.
+\frac{x}{y}&=\frac{1}{2}-\frac{1}{2}\ln x\\
+\frac{2x}{y}&=1-\ln x.
 \end{align}
 Thus, the particular solution is
 \begin{align}
-y=\frac{2x}{1-\log|x|}
+y=\frac{2x}{1-\ln x}.
 \end{align}
-
 
 \item
 Find the general solution of the differential equation
 \begin{align}
-y\,dx=\brak{x+2y^2}\,dy
+y\,dx&=(x+2y^2)\,dy.
+\label{eq:EE26BTECH11211_Prob_1.2.33.1}
 \end{align}
 
 \solution
-Dividing both sides by $dy$,
+
+Dividing by $dy$ and rearranging,
 \begin{align}
-y\frac{dx}{dy}=x+2y^2.
+y\frac{dx}{dy}-x&=2y^2.
+\label{eq:EE26BTECH11211_Prob_1.2.33.2}
 \end{align}
-Dividing by $y$,
+
+Let
 \begin{align}
-\frac{dx}{dy}=\frac{x}{y}+2y.
+X(s)&=\mathcal{L}\{x(y)\},
 \end{align}
-Rearranging,
+where the Laplace transform is taken with respect to $y$.
+
+Using the multiplication property \eqref{eq:EE26BTECH11211_Prob_1.1.17.3}
+and the derivative property \eqref{eq:EE26BTECH11211_Prob_1.1.17.2},
 \begin{align}
-\frac{dx}{dy}-\frac{x}{y}=2y.
+\mathcal{L}\left\{y\frac{dx}{dy}\right\}
+&=-\frac{d}{ds}\mathcal{L}\left\{\frac{dx}{dy}\right\}\\
+&=-\frac{d}{ds}\brak{sX(s)-x(0)}\\
+&=-X(s)-s\frac{dX}{ds}.
 \end{align}
-we can solve this above linear differential equation using \eqref{eq:EE26BTECH11211_Prob_14}
+
+Taking the Laplace transform of \eqref{eq:EE26BTECH11211_Prob_1.2.33.2}, and using
+\eqref{eq:EE26BTECH11211_Prob_1.1.17.5} with $n=2$,
 \begin{align}
-\frac{dx}{dy}+P\brak{y}x=Q\brak{y},
-\end{align}
-where
-\begin{align}
-P\brak{y}=-\frac{1}{y},
-\qquad Q\brak{y}=2y.
-\end{align}
-{Step 1: Find the integrating factor.}
-\\The integrating factor is
-\begin{align}
-\mathrm{I.F.}=e^{\int P\brak{y}\,dy}.
+-X(s)-s\frac{dX}{ds}-X(s)&=\frac{4}{s^3}.
 \end{align}
 Therefore,
 \begin{align}
-\mathrm{I.F.}=e^{-\int\frac{1}{y}\,dy}
-=e^{-\log|y|}
-=\frac{1}{y}.
+s\frac{dX}{ds}+2X(s)&=-\frac{4}{s^3}.
 \end{align}
-from  \eqref{eq:EE26BTECH11211_Prob_14}
+Dividing by $s$,
 \begin{align}
-x\brak{\frac{1}{y}}=\int2y\frac{1}{y}\,dy
-\end{align}
-\begin{align}
-x\brak{\frac{1}{y}}=2y+C
+\frac{dX}{ds}+\frac{2}{s}X(s)&=-\frac{4}{s^4}.
 \end{align}
 
-Thus, the general solution is
+The integrating factor is
 \begin{align}
-x=2y^2+Cy,
+\mathrm{I.F.}
+&=e^{\int \frac{2}{s}\,ds}=s^2.
 \end{align}
-where $C$ is an arbitrary constant.
+Multiplying throughout by $s^2$,
+\begin{align}
+s^2\frac{dX}{ds}+2sX(s)&=-\frac{4}{s^2}\\
+\frac{d}{ds}\brak{s^2X(s)}&=-\frac{4}{s^2}.
+\end{align}
+Integrating with respect to $s$,
+\begin{align}
+s^2X(s)&=\frac{4}{s}+C.
+\end{align}
+Hence,
+\begin{align}
+X(s)&=\frac{4}{s^3}+\frac{C}{s^2}.
+\end{align}
+
+Taking the inverse Laplace transform using \eqref{eq:EE26BTECH11211_Prob_1.1.17.9},
+\begin{align}
+x(y)&=4\frac{y^2}{2!}+Cy\\
+&=2y^2+Cy.
+\end{align}
+Therefore, the general solution is
+\begin{align}
+x=2y^2+Cy.
+\end{align}
 
 \item
 The position vectors of the vertices $A$, $B$ and $C$ of a triangle
@@ -2205,7 +2234,7 @@ Hence, the probability distribution is correct.
 Evaluate:$I=\int x^2\sin^{-1}\brak{x^{3/2}}\,dx.$
 
 \solution
-Using integration by parts \eqref{eq:EE26BTECH11211_Prob_3.1},
+Using integration by parts \eqref{eq:EE26BTECH11211-Prob_3.1},
 \begin{align}
 \int u\,dv=uv-\int v\,du.
 \end{align}
@@ -2298,7 +2327,7 @@ I={}&\frac{x^3}{3}\sin^{-1}\brak{x^{3/2}}
 \end{align}
 
 \item
-Show that the function $f:\mathbb{R}\to\mathbb{R}$ defined by $f\brak{x}=\frac{2x}{1+x^2}$
+Show that the function $f:\mathbb{R}\to\mathbb{R}$ defined by $f\brak{x}=\dfrac{2x}{1+x^2}$
 is neither one-one nor onto. Further, find a set $A$ so that the given function
 $f:\mathbb{R}\to A$ becomes onto function.
 
@@ -2348,7 +2377,7 @@ Since
 \brak{|x|-1}^2= 0,
 \end{align}
 we get
-\begin{align}abel
+\begin{align}
 x^2+1= 2|x|.
 \end{align}
 Therefore,
@@ -2506,7 +2535,7 @@ M=\left(
 \end{align}
 Therefore,
 \begin{align}
-\boxed{M=\brak{3,4,6}}.
+M=\brak{3,4,6}.
 \end{align}
 {Step 2: Find the direction vectors of the given lines.}
 \\The first line is
@@ -2542,21 +2571,17 @@ Therefore, we take their cross product:
 \begin{align}
 \vec{d}=\vec{d}_1\times\vec{d}_2.
 \end{align}
-Expanding the determinant,
+solving the cross product using\eqref{eq:EE26BTECH11211_Prob_11.1}
 \begin{align}
 \vec{d}=
 \myvec{
-\vec{i}&\vec{j}&\vec{k}\\
-3&-16&7\\
-3&8&-5
-}.
-\end{align}
-Expanding along the first row,
-\begin{align}
-\vec{d}
-={}&\vec{i}\big[\brak{-16}\brak{-5}-7\brak{8}\big]\\
-&-\vec{j}\big[3\brak{-5}-7\brak{3}\big]\\
-&+\vec{k}\big[3\brak{8}-\brak{-16}\brak{3}\big].
+ 16\brak{5} - 7\brak{8}\\
+7\brak{3} - 3\brak{-5}\\
+3\brak{8} - \brak{-16}3
+}
+&=\myvec{24\\
+36\\
+72}
 \end{align}
 Simplifying,
 \begin{align}

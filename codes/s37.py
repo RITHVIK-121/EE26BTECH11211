@@ -2,7 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc
 import os
-# Question 35
+
+from CoordGeo.line.funcs import line_gen_num
+
+# Question 37
 # Pole height = 6 m
 # Angle of elevation to the top of pole = 60 degrees
 # Angle of depression from top of tower to P = 45 degrees
@@ -62,6 +65,21 @@ print(f"Distance from P to tower = {distance:.2f} m")
 print(f"Total height of tower and pole = {total_height:.2f} m")
 print("=" * 55)
 
+
+# Generate a line using CoordGeo
+def draw_line(ax, P, Q, **kwargs):
+    P_vec = np.array([[P[0]], [P[1]]])
+    Q_vec = np.array([[Q[0]], [Q[1]]])
+
+    line = line_gen_num(P_vec, Q_vec, 100)
+
+    ax.plot(
+        line[0, :],
+        line[1, :],
+        **kwargs
+    )
+
+
 # --------------------------------------------------
 # Draw the diagram
 # --------------------------------------------------
@@ -75,24 +93,44 @@ U = (distance, total_height)   # Top of pole
 fig, ax = plt.subplots(figsize=(10, 7))
 
 # Ground
-ax.plot([-1, distance + 2], [0, 0], color="black", linewidth=2)
+draw_line(
+    ax, (-1, 0), (distance + 2, 0),
+    color="black",
+    linewidth=2
+)
 
 # Tower
-ax.plot([B[0], T[0]], [B[1], T[1]],
-        color="black", linewidth=4, label="Tower")
+draw_line(
+    ax, B, T,
+    color="black",
+    linewidth=4,
+    label="Tower"
+)
 
 # Pole on top of tower
-ax.plot([T[0], U[0]], [T[1], U[1]],
-        color="red", linewidth=4, label="Pole (6 m)")
+draw_line(
+    ax, T, U,
+    color="red",
+    linewidth=4,
+    label="Pole (6 m)"
+)
 
 # Line of sight from P to top of pole
-ax.plot([P[0], U[0]], [P[1], U[1]],
-        linestyle="--", color="blue", linewidth=2,
-        label="Line of sight")
+draw_line(
+    ax, P, U,
+    linestyle="--",
+    color="blue",
+    linewidth=2,
+    label="Line of sight"
+)
 
 # Horizontal line from P to top of tower (for angle of depression)
-ax.plot([P[0], T[0]], [T[1], T[1]],
-        linestyle=":", color="gray", linewidth=1.5)
+draw_line(
+    ax, P, T,
+    linestyle=":",
+    color="gray",
+    linewidth=1.5
+)
 
 # Mark points
 for label, point in [
@@ -160,5 +198,6 @@ plt.tight_layout()
 plt.savefig("s37.png", dpi=300, bbox_inches="tight")
 print("\nDiagram saved as s37.png")
 #os.system("termux-open s37.png")
+
 # Display the image
 plt.show()

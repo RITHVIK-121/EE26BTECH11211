@@ -1,4 +1,7 @@
+import numpy as np
 import matplotlib.pyplot as plt
+
+from CoordGeo.line.funcs import line_gen_num
 
 # Coordinates of triangle ABC
 A = (1, 1)
@@ -13,22 +16,45 @@ t = (D[0] - A[0]) / (B[0] - A[0])
 E = (A[0] + t * (C[0] - A[0]),
      A[1] + t * (C[1] - A[1]))
 
+
+# Generate a connected path using CoordGeo
+def generate_path(points, num=100):
+    segments = []
+
+    for i in range(len(points) - 1):
+        P_vec = np.array([[points[i][0]], [points[i][1]]])
+        Q_vec = np.array([[points[i + 1][0]], [points[i + 1][1]]])
+
+        segment = line_gen_num(P_vec, Q_vec, num)
+
+        if i == 0:
+            segments.append(segment)
+        else:
+            segments.append(segment[:, 1:])
+
+    return np.hstack(segments)
+
+
 # Create the figure
 fig, ax = plt.subplots(figsize=(8, 7))
 
-# Draw triangle ABC
+# Draw triangle ABC using CoordGeo
+triangle = generate_path([A, B, C, A])
+
 ax.plot(
-    [A[0], B[0], C[0], A[0]],
-    [A[1], B[1], C[1], A[1]],
+    triangle[0, :],
+    triangle[1, :],
     linewidth=2,
     color="black",
     label="Triangle ABC"
 )
 
-# Draw DE parallel to BC
+# Draw DE parallel to BC using CoordGeo
+DE = generate_path([D, E])
+
 ax.plot(
-    [D[0], E[0]],
-    [D[1], E[1]],
+    DE[0, :],
+    DE[1, :],
     linewidth=2.5,
     color="red",
     label="DE || BC"

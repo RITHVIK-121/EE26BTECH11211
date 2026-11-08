@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Wedge, Polygon
 import os
+
+from CoordGeo.line.funcs import line_gen_num
+
 # Question 32
 # Radius = 21 cm, central angle = 60 degrees
 
@@ -55,6 +58,45 @@ print(f"(i) Arc length = {arc_length:.2f} cm")
 print(f"(ii) Minor segment area = {segment_area:.2f} cm^2")
 print("=" * 55)
 
+
+# Generate a line segment using CoordGeo
+def draw_line(ax, P, Q, **kwargs):
+    P_vec = np.array([[P[0]], [P[1]]])
+    Q_vec = np.array([[Q[0]], [Q[1]]])
+
+    line = line_gen_num(P_vec, Q_vec, 2)
+
+    ax.plot(
+        line[0, :],
+        line[1, :],
+        **kwargs
+    )
+
+
+# Generate a connected curved path using CoordGeo
+def draw_path(ax, points, **kwargs):
+    segments = []
+
+    for i in range(len(points) - 1):
+        P_vec = np.array([[points[i][0]], [points[i][1]]])
+        Q_vec = np.array([[points[i + 1][0]], [points[i + 1][1]]])
+
+        segment = line_gen_num(P_vec, Q_vec, 2)
+
+        if i == 0:
+            segments.append(segment)
+        else:
+            segments.append(segment[:, 1:])
+
+    path = np.hstack(segments)
+
+    ax.plot(
+        path[0, :],
+        path[1, :],
+        **kwargs
+    )
+
+
 # --------------------------------------------------
 # Draw the circle and shade the minor segment
 # --------------------------------------------------
@@ -86,6 +128,7 @@ ax.add_patch(sector)
 segment_polygon_points = [(A[0], A[1]), (B[0], B[1])] + list(
     zip(arc_x[::-1], arc_y[::-1])
 )
+
 segment_polygon = Polygon(
     segment_polygon_points,
     closed=True,
@@ -94,14 +137,19 @@ segment_polygon = Polygon(
 )
 ax.add_patch(segment_polygon)
 
-# Draw radii and chord
-ax.plot([0, A[0]], [0, A[1]], linewidth=2, label="Radius")
-ax.plot([0, B[0]], [0, B[1]], linewidth=2)
-ax.plot([A[0], B[0]], [A[1], B[1]],
-        linewidth=2, label="Chord")
+# Draw radii and chord using CoordGeo
+draw_line(ax, (0, 0), A, linewidth=2, label="Radius")
+draw_line(ax, (0, 0), B, linewidth=2)
+draw_line(ax, A, B, linewidth=2, label="Chord")
 
-# Draw the highlighted minor arc
-ax.plot(arc_x, arc_y, linewidth=3, label="Minor arc")
+# Draw the highlighted minor arc using CoordGeo
+arc_points = list(zip(arc_x, arc_y))
+draw_path(
+    ax,
+    arc_points,
+    linewidth=3,
+    label="Minor arc"
+)
 
 # Mark the centre and endpoints
 ax.scatter([0, A[0], B[0]], [0, A[1], B[1]], zorder=4)

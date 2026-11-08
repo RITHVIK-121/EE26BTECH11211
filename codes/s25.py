@@ -1,5 +1,9 @@
+import numpy as np
 import matplotlib.pyplot as plt
 import os
+
+from CoordGeo.line.funcs import line_gen_num
+
 # Question 26(B): Diagonals of PQRS bisect each other
 
 # Coordinates of rectangle ABCD
@@ -64,29 +68,67 @@ else:
 print("\nHence proved.")
 print("=" * 50)
 
+
+# Generate a connected path using CoordGeo
+def generate_path(points, num=100):
+    segments = []
+
+    for i in range(len(points) - 1):
+        P_vec = np.array([[points[i][0]], [points[i][1]]])
+        Q_vec = np.array([[points[i + 1][0]], [points[i + 1][1]]])
+
+        segment = line_gen_num(P_vec, Q_vec, num)
+
+        if i == 0:
+            segments.append(segment)
+        else:
+            segments.append(segment[:, 1:])
+
+    return np.hstack(segments)
+
+
 # Plot the rectangle ABCD
 fig, ax = plt.subplots(figsize=(9, 9))
 
 # Rectangle ABCD
-rectangle_x = [A[0], B[0], C[0], D[0], A[0]]
-rectangle_y = [A[1], B[1], C[1], D[1], A[1]]
+rectangle_points = [A, B, C, D, A]
+rectangle = generate_path(rectangle_points)
 
-ax.plot(rectangle_x, rectangle_y, marker="o",
-        label="Rectangle ABCD")
+ax.plot(
+    rectangle[0, :],
+    rectangle[1, :],
+    marker="o",
+    label="Rectangle ABCD"
+)
 
 # Quadrilateral PQRS
-pqrs_x = [P[0], Q[0], R[0], S[0], P[0]]
-pqrs_y = [P[1], Q[1], R[1], S[1], P[1]]
+pqrs_points = [P, Q, R, S, P]
+pqrs = generate_path(pqrs_points)
 
-ax.plot(pqrs_x, pqrs_y, marker="o",
-        label="Quadrilateral PQRS")
+ax.plot(
+    pqrs[0, :],
+    pqrs[1, :],
+    marker="o",
+    label="Quadrilateral PQRS"
+)
 
 # Diagonals of PQRS
-ax.plot([P[0], R[0]], [P[1], R[1]],
-        linestyle="--", label="Diagonal PR")
+PR = generate_path([P, R])
+QS = generate_path([Q, S])
 
-ax.plot([Q[0], S[0]], [Q[1], S[1]],
-        linestyle="--", label="Diagonal QS")
+ax.plot(
+    PR[0, :],
+    PR[1, :],
+    linestyle="--",
+    label="Diagonal PR"
+)
+
+ax.plot(
+    QS[0, :],
+    QS[1, :],
+    linestyle="--",
+    label="Diagonal QS"
+)
 
 # Mark all vertices
 points = {
@@ -142,5 +184,6 @@ plt.savefig("s25.png", dpi=300, bbox_inches="tight")
 
 print("\nImage saved as s25.png")
 #os.system("termux-open s25.png")
+
 # Display the diagram
 plt.show()
